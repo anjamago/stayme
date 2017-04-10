@@ -1,0 +1,147 @@
+header {
+    background-color: #2b4158;
+    flex-direction: column;
+    height: 96px;
+    min-height: 64px;
+    width: 100%;
+    position: relative;
+    z-index: 1000
+}
+
+header > nav > div {
+    width: 90%
+}
+
+.navbar-base {
+    border-radius: 0;
+    border: none;
+    margin: 0;
+    padding: 0
+}
+
+.navbar-base .navbar-brand {
+    height: 58px;
+    margin: 0;
+    padding: 0 0 0 8px
+}
+
+.navbar-base #logo {
+    height: 48px;
+    max-width: 64px
+}
+
+.navbar-toggle {
+    margin-right: 0;
+    margin-bottom: 0
+}
+
+.navbar-base li {
+    align-items: center;
+    display: flex;
+    height: 48px;
+    margin: 4px 8px
+}
+
+li.active a {
+    background-color: rgba(0, 0, 0, .1)
+}
+
+li.active a:hover, li.active a:focus {
+    background-color: rgba(0, 0, 0, .2) !important
+}
+
+.navbar-base li a {
+    border-radius: 4px;
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    height: 2.4em;
+    padding: 10px 16px;
+    text-align: center
+}
+
+.navbar-base li a:hover, .navbar-base li a:focus, .navbar.base li a:active {
+    -moz-transition: all .3s ease-in-out;
+    -webkit-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+    background-color: rgba(0, 0, 0, .1)
+}
+
+.icon-person {
+    height: 32px;
+    margin-top: -7px
+}
+
+.icon-person i {
+    margin-left: .5em
+}
+
+.icon-person img {
+    border-radius: 50%;
+    margin: auto .5em;
+    height: 32px
+}
+
+.dropdown-menu {
+    text-align: left;
+    border: 1px solid #efefef;
+    border-radius: 4px;
+    box-shadow: none;
+    min-width: 240px;
+}
+
+.dropdown-menu li {
+    height: 32px !important
+}
+
+.dropdown-menu a {
+    background: transparent;
+    color: #7D868F !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    width: 100% !important
+}
+
+.dropdown-menu a:hover, .dropdown-menu a:focus {
+    opacity: .8;
+    color: #28273A !important;
+}
+
+.navbar-nav > li > .dropdown-menu {
+    margin-top: 0;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+.nav .open > a, .nav .open > a:focus, .nav .open > a:hover {
+    background-color: transparent;
+}
+
+.navbar-nav .open .dropdown-menu > li > a {
+    line-height: 15px;
+}
+
+@media (max-width: 767px) {
+    header {
+        height: auto
+    }
+    .navbar-base .navbar-brand {
+        height: 64px
+    }
+    .navbar-base li {
+        display: block;
+        height: auto
+    }
+    .navbar-base li a {
+        width: 100%
+    }
+    header > nav > div {
+        width: 100%
+    }
+    .dropdown-menu a, .dropdown-menu a:hover, .dropdown-menu a:focus {
+        color: white !important;
+    }
+    .navbar-nav .open .dropdown-menu>li>a {
+        line-height: 25px;
+    }
+}

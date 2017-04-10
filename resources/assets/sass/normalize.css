@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700');
+html, body {
+    -webkit-text-size-adjust: 100%;
+    background-color: transparent;
+    color: #2E2E2E;
+    font-family: 'Roboto', sans-serif;
+    font-size: 13px;
+}
+
+body {
+    /*--Normalize--*/
+    border: 0;
+    line-height: 1.25em;
+    margin: 0;
+    min-height: 320px;
+    min-width: 320px;
+    padding: 0;
+    width: 100%;
+}
+
+
+/*--Modernize--*/
+
+html, body, div, span, h1, h2, h3, h4, h5, h6, p, a, address, cite, code, img, samp, strong, b, ol, ul, li, fieldset, form, label, caption, article, aside, canvas, figure, figcaption, footer, header, hgroup, menu, nav, output, section, summary, time, audio, video {
+    border: 0;
+    font-size: 100%;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+}
+
+a {
+    color: inherit;
+    text-decoration: none !important
+}
+
+a:hover,
+a:focus,
+a:active {
+    text-decoration: none !important;
+    outline: none
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+    display: block
+}
+
+ol, ul, li {
+    list-style: none;
+    padding-left: 0
+}
+
+blockquote, q {
+    quotes: none
+}
+
+:focus {
+    outline: 0
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0
+}
+
+img {
+    max-width: 100%;
+    height: auto
+}
+
+mark {
+    background: none
+}
+
+hr{
+    margin: 8px auto !important;
+}
+
+select {
+    max-width: 100%;
+}
+
+button {
+    background-color: transparent;
+    cursor: pointer;
+    border: transparent
+}
+
+label{
+    width: 100%;
+    text-align: left;
+    margin-bottom: .2em;
+}
+
+input, select, textarea {
+    box-shadow: none !important;
+    border: 2px solid #E6E6E6 !important;
+    border-radius: 4px !important;
+    outline: none !important
+}
+
+select.input-lg{
+    font-weight: 500;
+    font-size: 15px;
+}
+
+input.input-green:focus , select.input-green:focus{
+    border-color: #54d694 !important
+}
+
+input.input-red {
+    border-color: #ff0002 !important
+}
+

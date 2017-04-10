@@ -1,0 +1,257 @@
+@import "bootstrap.min.css";
+@import "animate.css";
+@import "base.css";
+@import "themify-icons.css";
+@import "normalize.css";
+@import "header.css";
+@import "footer.css";
+#cont {
+    background-color: #f7f7f7;
+    min-height: 100vh
+}
+
+header {
+    background: #54d694;
+    border-bottom: 1px solid #E6E6E6;
+    height: 72px;
+}
+
+#bs-navbar {
+    background: #54d694;
+}
+
+#cont-rest {
+    background-image: url(../img/cmp/circles.svg);
+    background-size: 100% 100%;
+    height: 100%;
+    min-height: calc(100vh - 72px);
+    width: 100%
+}
+
+#cont-rest-one {
+    min-height: calc(100vh - 72px)
+}
+
+#cont-rest .spacing, #cont-rest-one .spacing {
+    padding-bottom: 4rem;
+    padding-top: 2rem
+}
+
+#logo-lg {
+    width: 72px;
+    height: 72px;
+    margin-bottom: .4rem
+}
+.row{
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+}
+.card-wel {
+    background: white;
+    border-radius: 4px;
+    border: 1px solid #E6E6E6;
+    flex-direction: column;
+    min-height: 320px;
+    max-width: 640px;
+    padding: 2em;
+    float: left;
+    margin-left: 1.2em;
+    margin-top: 0.3em;
+}
+
+.card-wel object {
+    width: 220px;
+    height: 220px
+}
+
+.card-wel .subtext {
+    font-size: 1em;
+}
+
+#pag {
+    display: flex;
+    height: 2.4em;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 1.2rem;
+    width: 100%
+}
+
+#pag .submiddle {
+    height: 100%
+}
+
+.card-anun {
+    border-radius: 4px;
+    border: 1px solid #E6E6E6;
+    min-width: 240px;
+    margin-bottom: 1.5rem
+}
+
+.card-anun small {
+    color: white !important
+}
+
+.card-anun .cont-img {
+    width: 100%;
+    height: 15vw !important
+}
+
+.card-anun img {
+    border-radius: 4px 4px 0 0
+}
+
+.pestana {
+    position: absolute;
+    font-size: 15px;
+    top: 8px;
+    left: 8px;
+    background-color: rgba(0, 0, 0, .64);
+    color: white;
+}
+
+.verifit {
+    border: 4px solid rgba(255, 255, 255, .4);
+    position: absolute;
+    font-size: 12px;
+    top: 12px;
+    left: calc(100% - 36px);
+    color: white;
+}
+
+.cont-anun {
+    background: white;
+    border-radius: 0 0 4px 4px;
+    padding: 1em;
+}
+
+.cont-anun p:nth-child(1), #item-element {
+    color: #28273A;
+    font-size: 1.02em;
+    font-weight: 700;
+    line-height: 1.24;
+}
+
+.cont-anun .subtext, .item-text .subtext, .icon-sp .subtext {
+    font-size: .9em;
+    font-weight: 500;
+    text-align: left;
+    margin-bottom: 0
+}
+
+.config .opt a {
+    margin: auto .4rem
+}
+
+#descrip .card-wel {
+    padding: 1.2rem;
+    max-width: auto;
+}
+
+#item-element {
+    display: flex;
+    justify-content: space-around;
+}
+
+#item-element>div, .item-text {
+    flex-direction: column;
+    margin: .8rem auto
+}
+
+#item-element .icon {
+    background-size: 72px 72px;
+    background: url(../img/cmp/decored.svg);
+    font-size: 24px;
+    height: 74px;
+    width: 74px
+}
+
+.title-anun {
+    color: #2b4158;
+    font-size: 1.08em;
+    font-weight: 700;
+    line-height: 1.24;
+    margin: 1em auto;
+}
+
+.item-text p.subtext {
+    color: #585858
+}
+
+.item-element-list>div {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.carousel, .carousel-inner img {
+    border-radius: 4px;
+    width: 100%;
+    height: 24vw !important;
+    min-height: 240px;
+    max-height: 420px;
+}
+
+.carousel .left, .carousel .right {
+    margin: auto .2em;
+    font-size: 18px;
+    color: white
+}
+
+.cont-indicator {
+    height: 32px;
+    margin: .5rem auto;
+    position: relative;
+    top: -42px;
+    left: 12px;
+}
+
+.cont-anun-person img {
+    border-radius: 50%;
+    border: 2px solid rgba(0, 0, 0, .1);
+    height: 56px;
+    width: 56px;
+    margin-right: 12px;
+}
+
+.cont-anun-person>div {
+    max-width: 252px;
+}
+
+.cont-anun-person .subtext {
+    line-height: 1.6 !important;
+    margin-bottom: 0 !important;
+}
+
+#form-basic .col-sm-6, #form-basic .col-sm-4, #form-basic .col-sm-12, #form-basic .col-sm-8 {
+    margin: .5em auto !important;
+}
+
+@media (max-width: 767px) {
+    header {
+        height: 65px
+    }
+    #cont-rest-one>div>div>div, #cont-rest-one>div>div {
+        padding: 0 !important;
+    }
+    .card-anun .cont-img {
+        height: 56vw !important
+    }
+    #item-element {
+        flex-direction: column;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .card-anun .cont-img {
+        height: 28vw !important
+    }
+}
+
+@media (min-width: 1440px) {
+    #cont-rest, #cont-rest-one {
+        min-height: calc(80vh - 72px)
+    }
+    .card-anun .cont-img {
+        height: 220px !important
+    }
+}

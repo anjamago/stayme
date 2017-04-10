@@ -1,0 +1,74 @@
+footer {
+    background-color: #2b4158;
+    color: white
+}
+
+footer .spacing {
+    padding-top: 4.8rem;
+    padding-bottom: 4.8rem
+}
+
+#logo-footer embed {
+    height: 72px
+}
+
+footer .nav-pills, #redes, #contact {
+    margin: .6rem auto
+}
+
+footer .nav-pills a {
+    background: transparent;
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center
+}
+
+footer .nav-pills a:hover, footer .nav-pills a:focus {
+    background: transparent;
+    color: white;
+    opacity: .8
+}
+
+#redes li {
+    margin: auto .6em
+}
+
+#redes a img {
+    height: 36px;
+    width: 36px
+}
+
+#redes a:hover, #redes a:focus {
+    opacity: .8;
+    -moz-transition: all .3s ease-in-out;
+    -webkit-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+
+#contact p {
+    font-size: 16px;
+    font-weight: 600;
+    margin: .4em;
+    opacity: .8
+}
+
+#contact object {
+    height: 1.2em;
+    margin-top: 6px;
+    opacity: .8;
+    width: 1.2em
+}
+
+#copy {
+    margin-top: 4rem;
+    color: #E2E7EB;
+}
+
+@media (max-width: 767px) {
+    #contact {
+        flex-direction: column;
+    }
+    footer .nav-pills li {
+        width: 100%
+    }
+}

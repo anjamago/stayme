@@ -1,0 +1,64 @@
+@import "../bootstrap.min.css";
+/*@import "../themify-icons.css";*/
+@import "../normalize.css";
+@import "../base.css";
+@import "paper-bootstrap-wizard.css";
+@import "../footer.css";
+
+
+
+#cont{
+	background: #2b4158;
+}
+
+.text-icon{
+    margin: 8px 0;
+    font-size: 14px;
+}
+
+.wizard-container{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.wizard-card .choice {
+    margin-top: 0;
+}
+
+.card .card-checkboxes p {
+	font-size: 15px !important;
+}
+
+.infoComple {
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.spcPane{
+    margin-bottom: 16px;
+}
+
+.spaCd > div{
+    padding: 0 5px !important;
+}
+
+.spaCd .card{
+    width: 100% !important
+}
+
+@media (max-width: 420px){
+    .wizard-container{
+        display: flex;
+        justify-content: center;
+    }
+    .wizard-container .card{
+        width: 95%;
+    }
+    .minCont,
+    .minCont > div,
+    .minCont > div  > div{
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+}
