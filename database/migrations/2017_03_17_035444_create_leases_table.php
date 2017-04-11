@@ -14,7 +14,7 @@ class CreateLeasesTable extends Migration
     public function up()
     {
         Schema::create('leases', function (Blueprint $table) {
-            $table->increments('id_lease');
+            $table->increments('id');
             $table->integer('id_city');
             $table->integer('id_departmen');
             $table->integer('id_outskirt');

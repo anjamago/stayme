@@ -14,7 +14,7 @@ class CreateChoisesTable extends Migration
     public function up()
     {
         Schema::create('choises', function (Blueprint $table) {
-            $table->increments('id_choise');
+            $table->increments('id');
             $table->string('choise');
             $table->string('type');
             $table->string('icon');

@@ -14,7 +14,7 @@ class CreateOutskirtsTable extends Migration
     public function up()
     {
         Schema::create('outskirts', function (Blueprint $table) {
-            $table->increments('id_outskirt');
+            $table->increments('id');
             $table->integer('id_city');
             $table->integer('id_departmen');
             $table->string('outskirt');

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRolsTable extends Migration
+class CreateRolPermissionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateRolsTable extends Migration
      */
     public function up()
     {
-        Schema::create('rols', function (Blueprint $table) {
-            $table->increments('id_rol');
-            $table->string('rol');
-            $table->integer('rules');
+        Schema::create('rol_permissions', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('id_permission')->unsigned();
+            $table->integer('id_user')->unsigned();
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateRolsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rols');
+        Schema::dropIfExists('rol_permissions');
     }
 }

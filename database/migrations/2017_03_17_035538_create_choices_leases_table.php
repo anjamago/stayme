@@ -14,7 +14,7 @@ class CreateChoicesLeasesTable extends Migration
     public function up()
     {
         Schema::create('choices_leases', function (Blueprint $table) {
-            $table->increments('id_choiceLeas');
+            $table->increments('id');
             $table->integer('id_lease');
             $table->integer('id_user');
             $table->integer('id_choice');

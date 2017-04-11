@@ -14,7 +14,7 @@ class CreateLeaseTypesTable extends Migration
     public function up()
     {
         Schema::create('lease_types', function (Blueprint $table) {
-            $table->increments('id_lease_type');
+            $table->increments('id');
             $table->string('lease_type');
             $table->binary('enabled');
             $table->timestamps();
