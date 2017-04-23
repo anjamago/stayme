@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use App\User;
+use App\Permission;
 
 class LoginController extends Controller
 {
@@ -25,7 +28,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/user';
 
     /**
      * Create a new controller instance.
@@ -37,5 +40,31 @@ class LoginController extends Controller
         $this->middleware('guest', ['except' => 'logout']);
     }
 
+    protected function sendLoginResponse(Request $request)
+    {
+
+
+        $idUser = $this->guard()->user();
+        $user = new User;
+        $userRol=$user->rol($idUser->id);
+        $request->session()->regenerate();
+
+        $this->clearLoginAttempts($request);
+
+        foreach($userRol as $rol){
+            if($rol->permission == 'Admin'){
+                return redirect('admin/dashboard');
+            }else if($rol->permission == 'propietario'){
+                return redirect('/propietary');
+            }
+            else if($rol->permission == 'estudiante' || $rol->permission == 'trabajador'){
+                return redirect('/user');
+            }else{
+                return redirect('/userProfile');
+            }
+        }
+
+
+    }
 
 }

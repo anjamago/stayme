@@ -17,7 +17,9 @@ Route::get('/', function () {
 Route::get('/propietaryinfo',function(){
     return view('propietaryinfo');
 });
-
+#ruta donde llegan los usuarios a escojer un rol para el sistema
+Route::get('/userProfile/{idUs}','GeneralController@activeUser')->where('idUs','[0-9]+');
+Route::post('/userProfile','GeneralController@activeRol');
 
 Route::get('/home', 'HomeController@index');
 
@@ -28,7 +30,11 @@ Route::group(['prefix'=>'general'],function(){
     Route::get('cities/{id}','GeneralController@citiesFiel')->where('id','[0-9]+');
     Route::get('outskirt/{id}','GeneralController@outskirtWhere')->where('id','[0-9]+');
 });
-
+Route::group(['prefix'=>'admin'],function(){
+    Route::get('/dashboard',function(){
+        echo 'admin';
+    });
+});
 //group propietary
 Route::group(['prefix' => 'propietary'], function () {
 
