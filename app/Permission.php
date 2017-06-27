@@ -10,6 +10,6 @@ class Permission extends Model
     protected  $fillable = ["permission"];
 
     public function rol_permission(){
-        return $this->hasOne('App\rol_permissions');
+        return $this->hasOne('App\PermissionUsers');
     }
 }

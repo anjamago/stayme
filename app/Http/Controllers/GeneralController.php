@@ -7,7 +7,8 @@ use App\Citie;
 use App\Outskirt;
 use Illuminate\Http\Request;
 use App\userActive;
-use App\PermissionUser;
+use App\Permission;
+use App\PermissionUsers;
 use Illuminate\Mail\Message;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\RegistroUser;
@@ -67,47 +68,57 @@ class GeneralController extends Controller
         die(json_encode($this->json,true));
 
     }
-    public function activeUser($idUs){
+    public function activeUser($id=null,$token = null){
 
-        $email= session('email');
-        $id = \Illuminate\Support\Facades\DB::select("SELECT id FROM `users` WHERE email ='{$email}'");
-        $id = $id[0]->id;
-        $userAct = \Illuminate\Support\Facades\DB::select("SELECT active FROM user_actives WHERE user_id ={$id}");
+        $iduser= $id==null?@session('id'):$id;
+
+        $userAct = \Illuminate\Support\Facades\DB::select("SELECT active FROM user_actives WHERE user_id ={$iduser}");
+
         if(count($userAct) < 1 ){
 
                 if (empty($userAct[0]['active'])) {
                     $user = new userActive();
-                    $user->user_id = $id;
+                    $user->user_id = $iduser;
                     $user->active = 0;
                     $user->save();
 
-                    //mandamos el email
-
-                    // mail('anjamago@mailinator.com','prueba','mail','cabezera');
-                    /* Mail::send('email.prueba',['user'=>'Stayme','email'=>$email],function(Message $message){
-                        $message->to('info@stayme.com','info stayme')
-                            ->from('anjamago@mailinator.com','pepito')
-                            ->subject('Bienvenido a Stayme');
-                     });*/
                 }
 
         }elseif(count($userAct) > 0){
             $active = $userAct[0];
 
             if($active->active == 1){
-                return view('perfil')->with('status','autorizado');
-            }elseif($active->active==0){
-                return view('perfil')->with('status','noAutorizado');
+                $permission = Permission::all();
+                return view('perfil')->with(['status'=>'autorizado',"roles"=>$permission,"id"=>$iduser]);
+            }elseif($active->active==0 && $token !=null ){
+                $user = userActive::find($iduser);
+                $user->active = 1;
+                $user->save();
+                $permission = Permission::all();
+                return view('perfil')->with(['status'=>'autorizado',"roles"=>$permission,"id"=>$iduser]);
             }
         }
 
         return view('perfil')->with('status','noAutorizado');
     }
     public function activeRol(Request $request){
-        $rol = $request->input('perfil');
 
-        $userPermiso = new PermissionUser();
+       $this->validate($request,[
+           "perfil"=>"required",
+           "id_user"=>"required"
+        ]);
+        $id_perfil = $request->input("perfil");
+        $id_user = $request->input("id_user");
+        $sqlres= \Illuminate\Support\Facades\DB::select("SELECT id FROM permission_users WHERE id_user ={$id_user}");
+        if(count($sqlres) < 1 ) {
 
-
+            $permissionUser = new PermissionUsers();
+            $permissionUser->id_user = $id_user;
+            $permissionUser->id_permission = $id_perfil;
+            $permissionUser->save();
+            return response()->redirectTo("/login");
+        }else{
+            return response()->redirectTo("/login");
+        }
     }
 }

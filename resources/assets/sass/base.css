@@ -134,7 +134,7 @@
 }
 
 .btn-blue {
-    background-color: #2da9e5
+    background-color: #54d694;
 }
 
 .btn-cian {
@@ -185,6 +185,7 @@
 #cont {
     min-height: 100vh !important
 }
+
 
 @media (max-width: 991px) {
     .spacing {

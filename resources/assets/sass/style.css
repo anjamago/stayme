@@ -10,6 +10,10 @@
     min-height: 320px
 }
 
+.btn-stayme{
+    background-color :#54d694 !important;
+}
+
 #init > div {
     margin: 64px
 }

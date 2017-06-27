@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePermissionUserTable extends Migration
+class CreatePermissionUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreatePermissionUserTable extends Migration
      */
     public function up()
     {
-        Schema::create('permission_user', function (Blueprint $table) {
+        Schema::create('permission_users', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('id_user');
             $table->integer('id_permission');

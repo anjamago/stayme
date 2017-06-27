@@ -102,11 +102,11 @@ var Core = function(){
             if(this.opt != undefined || this.opt != '' || this.opt != 0){
                 switch(this.opt){
                     case 'departmen':
-                        obj.value = e.id_city;
+                        obj.value = e.id;
                         obj.text = e.city;
                         break;
                     case 'city':
-                        obj.value = e.id_outskirt;
+                        obj.value = e.id;
                         obj.text = e.outskirt;
                         break;
                 }

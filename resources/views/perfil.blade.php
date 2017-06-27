@@ -78,13 +78,22 @@
             </p>
             <form action="/userProfile" method="post" class="container row">
                 {{ csrf_field() }}
+                <input type="hidden" value="{{$id}}" name="id_user">
                 <div class="from-group col-sm-4 col-sm-offset-4">
+                    @if(count($errors) > 0)
+                        <div class="alert alert-warning" role="alert">
+                            @foreach ($errors->all() as $error)
+                                <div>{{ $error }}</div>
+                            @endforeach
+                        </div>
+                    @endif
+                    </br>
 
                     <select name="perfil" id="rol" class="form-control col-sm-12 ">
                         <option value=""></option>
-                        <option value="2">Propietario</option>
-                        <option value="3">Estudiante</option>
-                        <option value="4">Trabajador</option>
+                        @foreach($roles as $rol)
+                            <option value="{{$rol->id}}">{{$rol->permission}}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="from-group col-sm-4 col-sm-offset-4 " style="margin-top: 1rem;">

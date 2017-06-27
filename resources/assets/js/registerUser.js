@@ -11,7 +11,7 @@ var ValidateRegister = function(){
             var form= $('form').serializeArray();
             var passw=form[3].value;
             var passw2=form[4].value;
-            console.log(passw,passw2);
+          
             if(passw != passw2){
                 $('#passw2').addClass('input-red');
             }else if(passw === passw2){

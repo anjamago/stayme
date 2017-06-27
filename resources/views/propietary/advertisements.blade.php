@@ -24,7 +24,7 @@
                         <span class="sr-only">Toggle navigation</span>
                         <img src="{{URL::asset('/img/icon/bars.svg')}}" alt="">
                     </button>
-                    <a class="navbar-brand centerWH" href="admin-propietario-anuncios.html">
+                    <a class="navbar-brand centerWH" href="{{url('/propietary')}}">
                         <div id="logo" class="centerWH">
                             <img src="{{URL::asset('/img/lg/stayme-white.svg')}}" alt="">
                         </div>
@@ -35,8 +35,8 @@
 
                     <ul class="nav navbar-nav">
 
-                        <li class="active"><a href="/propietary"><i class="material-icons">&#xE88A;</i> Volver</a></li>
-                        <li><a href="#">Perfil</a></li>
+                        <li class="active"><a href="{{url('/propietary')}}"><i class="material-icons">&#xE88A;</i> Volver</a></li>
+                        <!--<li><a href="#">Perfil</a></li>-->
 
                     </ul>
 
@@ -47,15 +47,24 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                 <div class="icon-person centerWH">
                                     <img src="{{URL::asset('/img/person/person.jpg')}}" alt="">
-                                    Nombre person
+                                    {{Auth::user()->name}}
                                     <i class="material-icons">&#xE313;</i>
                                 </div>
                             </a>
 
                             <ul class="dropdown-menu">
-                                <li><a href="#">Perfil</a></li>
-                                <li><a href="#">Configuración</a></li>
-                                <li><a href="#">Cerrar sesión</a></li>
+                                <!--<li><a href="#">Perfil</a></li>
+                                <li><a href="#">Configuración</a></li>-->
+                                <li>
+                                    <a href=href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        Cerrar sesión
+                                    </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        {{ csrf_field() }}
+                                    </form>
+                                </li>
                             </ul>
 
                         </li>
@@ -73,27 +82,52 @@
     <div class="row">
         <div id="cont-rest">
             @for ($i=0; $i<=count($ofertas)-1;$i++)
-                <div class="card-wel text-center centerWH">
+                <div class="card-wel text-center centerWH col-md-6" >
                     <div class="card">
                         <div class="card-image waves-effect waves-block waves-light">
-                            <img class="activator" src="images/office.jpg">
+                        @foreach($imgs as $key => $img)
+                            @if($img->id_lease == $ofertas[$i]->id_lease)
+                                <img class="activator" src="{{URL::asset($img->url_img)}}" style="width: 90%; height: 295px !important;">
+                            @endif
+                        @endforeach
                         </div>
                         <div class="card-content">
-                          <span class="card-title activator grey-text text-darken-4">{{$ofertas[$i]->city}}<i class="material-icons right">more_vert</i></span>
-                            <p>
+                          <div class="card-title activator grey-text text-darken-4"> 
+                            Ciudad {{$ofertas[$i]->city}}
+                          </div>
+                            
+                                <div class="infoCard" >Precio : {{$ofertas[$i]->prince}} </div> 
+                                <div class="infoCard" >Direccion : {{$ofertas[$i]->address }}</div>
+                                <div class="infoCard">Cupos :{{$ofertas[$i]->room}}</div>
+                                <div class="infoCard">Sexo : {{$ofertas[$i]->gender}}</div>
+                                <div class="infoCard">Tipo de inquilono : {{$ofertas[$i]->permission}}</div>
+                            <ul class="advertisement-ul">
+                                <li>
+                                    <a href="{{url('/propietary/show/'.$ofertas[$i]->id_lease)}}">
+                                        <i class="material-icons">visibility</i>
+                                        <span>Ver</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="">
+                                        <i class="material-icons">create</i>
+                                        <span>Editar</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="">
+                                        <i class="material-icons">delete_forever</i>
+                                        <span>Eliminar</span>
+                                    </a>
+                                </li>
+                            </ul>
 
-                                Precio : {{$ofertas[$i]->prince}} <br>
-                                Direccion : {{$ofertas[$i]->address }}<br>
-                                Cupos :{{$ofertas[$i]->room}}<br>
-                                Sexo : {{$ofertas[$i]->gender}}<br>
-                                Tipo de inquilono : {{$ofertas[$i]->rol}}<br>
-
-                            </p>
+                           
                         </div>
-                        <div class="card-reveal">
+                        <!--<div class="card-reveal">
                             <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
                             <p>Here is some more information about this product that is only revealed once clicked on.</p>
-                        </div>
+                        </div>-->
                     </div>
                 </div>
             @endfor

@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Permission;
+use App\PermissionUsers;
 
 class LoginController extends Controller
 {
@@ -28,7 +29,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/user';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -52,15 +53,19 @@ class LoginController extends Controller
         $this->clearLoginAttempts($request);
 
         foreach($userRol as $rol){
+
             if($rol->permission == 'Admin'){
-                return redirect('admin/dashboard');
-            }else if($rol->permission == 'propietario'){
+                session(["rol"=>$rol->permission]);
+                return redirect('/dashboard');
+            }else if($rol->permission == 'Propietario'){
+                session(["rol"=>$rol->permission]);
                 return redirect('/propietary');
             }
-            else if($rol->permission == 'estudiante' || $rol->permission == 'trabajador'){
+            else if($rol->permission == 'Estudiante' || $rol->permission == 'Trabajador'){
+                session(["rol"=>$rol->permission]);
                 return redirect('/user');
             }else{
-                return redirect('/userProfile');
+                return redirect('/error');
             }
         }
 

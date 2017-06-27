@@ -8,6 +8,7 @@
   <link rel=icon type="image/png" href="{{ URL::asset('/img/fv/Stayme-Favicon.png')}}">
   <link rel="stylesheet" href="{{ URL::asset('/css/ptl/style-form.css')}}">
   <link rel="stylesheet" href="{{ URL::asset('/css/material.css')}}">
+  <link rel="stylesheet" href="{{ URL::asset('/css/dropzone.css')}}">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
@@ -101,11 +102,9 @@
                         <label>Tipo de Alojamiento</label><br>
                         <select name="lease" class="form-control" id="lease">
                           <option disabled="" selected="">- Alojamiento -</option>
-                          <option value="1"> Apto </option>
-                          <option value="2"> Apartaestudio </option>
-                          <option value="3"> Hab. Individual </option>
-                          <option value="4"> Hab. Compartida </option>
-                          <option value="5"> Hab. Independiente </option>
+                          @foreach($info['lease_type'] as $type)
+                            <option value="{{$type->id}}">{{$type->lease_type}}</option>
+                          @endforeach
                         </select>
                       </div>
                     </div>
@@ -117,7 +116,7 @@
                         <select name="departmen" class="form-control" id="departmen">
                           <option disabled="" selected="">- Departamento -</option>
                           @foreach($info['departmes'] as $depart)
-                           <option value="{{$depart->id_departmen}}">{{$depart->departmen}}</option>
+                           <option value="{{$depart->id}}">{{$depart->departmen}}</option>
                           @endforeach
                         </select>
                       </div>
@@ -151,7 +150,7 @@
                           <div class="form-group">
                             <label>Valor mensual</label>
                             <div class="input-group">
-                              <input type="number" id="price" class="form-control" name="price" placeholder="500000">
+                              <input type="number"  id="price" class="form-control" name="price" placeholder="500000">
                               <span class="input-group-addon">$</span>
                             </div>
                           </div>
@@ -180,7 +179,7 @@
                               @if($choice->type == 'HAB')
                                 <div class="col-sm-6 col-md-3">
                                   <div class="choice" data-toggle="wizard-checkbox">
-                                    <input type="checkbox" name="hab[]" value="{{$choice->id_choise}}">
+                                    <input type="checkbox" name="hab[]" id="{{$choice->type}}" value="{{$choice->id}}">
                                     <div class="card card-checkboxes card-hover-effect">
                                       <img src="{{URL::asset($choice->icon)}}" alt="">
                                       <p>{{$choice->choise}}</p>
@@ -198,16 +197,16 @@
                     <div class="col-sm-5  col-sm-offset-1">
                       <div class="form-group">
                         <label>Cupos disponibles</label>
-                        <input type="number" name='quantity' class="form-control" placeholder="1">
+                        <input type="number" name='quantity'  id="quantity" class="form-control" placeholder="1">
                       </div>
                     </div>
                     <div class="col-sm-5  ">
                       <div class="form-group">
                         <label>Tiempo Arriendo</label>
-                        <select name="lease_tiame" class="form-control" id="departmen">
+                        <select name="lease_tiame" class="form-control" id="lease_type">
                           <option disabled="" selected="">- Tiempo de arriedo -</option>
-                          @foreach($info['lease_type'] as $type)
-                           <option value="{{$type->id_lease_type}}">{{$type->lease_type}}</option>
+                          @foreach($info['spans'] as $type)
+                           <option value="{{$type->id}}">{{$type->span}}</option>
                           @endforeach
                         </select>
                       </div>
@@ -234,7 +233,7 @@
                               @if($choice->type == 'SEV')
                                 <div class="col-sm-6 col-md-3">
                                   <div class="choice" data-toggle="wizard-checkbox">
-                                    <input type="checkbox" name="sev[]" value="{{$choice->id_choise}}">
+                                    <input type="checkbox" name="sev[]" id="{{$choice->type}}" value="{{$choice->id}}">
                                     <div class="card card-checkboxes card-hover-effect">
                                       <img src="{{URL::asset($choice->icon)}}" alt="">
                                       <p>{{$choice->choise}}</p>
@@ -278,9 +277,11 @@
                         <label>¿Ocupación?</label><br>
                         <select name="occupation" class="form-control">
                           <option disabled="" selected="">- Ocupación -</option>
-                          <option value="1"> Estudiante </option>
-                          <option value="2"> Empleado </option>
-                          <option value="3"> Cualquier ocupación </option>
+                          @foreach($info['permission'] as $type)
+                            @if($type->permission != 'Propietario')
+                              <option value="{{$type->id}}">{{$type->permission}}</option>
+                            @endif
+                          @endforeach
                         </select>
                       </div>
                     </div>
@@ -294,7 +295,7 @@
                               @if($choice->type == 'ACT')
                                 <div class="col-sm-6 col-md-3">
                                   <div class="choice" data-toggle="wizard-checkbox">
-                                    <input type="checkbox" name="act[]" value="{{$choice->id_choise}}">
+                                    <input type="checkbox" name="act[]" id="{{$choice->type}}" value="{{$choice->id}}">
                                     <div class="card card-checkboxes card-hover-effect">
                                       <img src="{{URL::asset($choice->icon)}}" alt="">
                                       <p>{{$choice->choise}}</p>
@@ -322,12 +323,6 @@
                       </div>
                     </div>
 
-                    <div class="col-sm-10 col-sm-offset-1">
-                      <div class="form-group">
-                        <label>¡Fotos del alojamiento!</label><br>
-                        <input type="file" name="imgs" class="btn btn-success" multiple><i class="ti-camera"></i>  Agregar</input>
-                      </div>
-                    </div>
 
                   </div>
 
@@ -366,7 +361,33 @@
   </div>
   <!-- /.img-container-->
 
+  <button type="button" class="btn btn-primary hidden" data-toggle="modal" data-target=".abrir">Large modal</button>
+
+  <div class="modal fade abrir" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" data-backdrop="static" data-keyboard="false" >
+    <div class="modal-dialog modal-lg" role="document">
+
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close hidden" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title center" id="myModalLabel">¡Fotos del alojamiento!</h4>
+        </div>
+        <div class="modal-body">
+          <form action="{{url('/propietary/upload')}}" class="dropzone needsclick dz-clickable" id="dropzone">
+            {{csrf_field()}}
+          </form>
+        </div>
+        <div class="modal-footer">
+          <a href="#" class="btn btn-fill btn-success btn-wd subirImg">Guardar</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
 </div>
+<script>
+  var tkn = "{{csrf_token()}}";
+</script>
 
 <script src="{{ URL::asset('/js/jquery_1_12_4.js')}}"></script>
 <script src="{{ URL::asset('/js/bootstrap.min.js')}}"></script>
@@ -376,5 +397,7 @@
 <script src="https://cdn.jsdelivr.net/jquery.validation/1.15.0/additional-methods.min.js"></script>
 <script src="{{ URL::asset('/js/animate.js')}}" type="text/javascript"></script>
 <script src="{{ URL::asset('/js/validateForm.js')}}" type="text/javascript"></script>
+<script src="{{ URL::asset('/js/dropzone.min.js')}}" type="text/javascript"></script>
+<script src="{{ URL::asset('/js/dropConfig.js')}}" type="text/javascript"></script>
 </body>
 </html>

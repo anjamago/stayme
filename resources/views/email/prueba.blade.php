@@ -1,1 +1,0 @@
-hola {{$user}} email {{$email}}

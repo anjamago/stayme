@@ -71,7 +71,7 @@
             <p class="header-subtitle">
                 Encuentra alojamientos increíbles y reserva en línea. ¡Es fácil y seguro!.
             </p>
-
+            <!--
             <form class="form-inline">
 
 
@@ -85,7 +85,7 @@
 
 
                     <div class="form-group">
-                        <!-- <div class="input-group-addon">&nbsp;<i class="fa fa-usd fa-2x"></i>&nbsp;</div>-->
+                        <div class="input-group-addon">&nbsp;<i class="fa fa-usd fa-2x"></i>&nbsp;</div>
                         <select class="form-control">
                             <option>Habitación individual</option>
                             <option>Habitación Compartida</option>
@@ -98,8 +98,8 @@
                     <button class="btn btn-lg btn-header">Buscar</button>
                 </div>
 
-            </form>
-
+            </form>-->
+            
 
         </div>
     </div>

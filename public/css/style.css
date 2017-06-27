@@ -12,6 +12,26 @@
     min-height: 550px
 }
 
+#init1 {
+    background: url("../img/propi.jpg") no-repeat center center fixed;
+    background-color: #2b4158;
+    height: calc(90vh - 96px);
+    min-height: 320px
+}
+
+#init2 {
+    background: url("../img/Gafas.jpg") no-repeat center center fixed;
+    background-color: #2b4158;
+    height: calc(90vh - 96px);
+    min-height: 320px
+}
+
+#init3 {
+    background: url("../img/Politicas.jpg") no-repeat center center fixed;
+    background-color: #2b4158;
+    height: calc(90vh - 96px);
+    min-height: 320px
+}
 #init > div {
     margin: auto;
     text-align: center;
@@ -25,6 +45,19 @@
     color: #E2E7EB
 }
 
+#init1 > div {
+    margin: 64px
+}
+
+#init1 h1 {
+    color: white
+
+    
+}
+
+#init1 p {
+    color: #F6F9FB
+}
 section > div > div {
     margin: 2rem 0
 }
@@ -150,7 +183,6 @@ section > div > div .subtext {
 
 header {
     background: #54d694;
-    border-bottom: 1px solid #E6E6E6;
     height: 72px;
 }
 
